@@ -1,10 +1,12 @@
 import './App.css';
-import MainPage from './Container/MainPage'
+// import MainPage from './Container/MainPage'
+import StartGameCard from './Container/StartGameCard'
 
 function App() {
   return (
     <div className="App">
-      <MainPage/>
+      <StartGameCard />
+      {/* <MainPage/> */}
     </div>
   );
 }

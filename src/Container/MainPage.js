@@ -8,7 +8,7 @@ class MainPage extends Component {
         return (
             <div className="ParentClass">
                 <div className="boardStyle">
-                    <img src={require('../Image/4inarow.png').default} alt="" />
+                    <img style={{ height: '100%', width: '100%' }} src={require('../Image/4inarow.png').default} alt="" />
                 </div>
                 <div className="squareBox">
                     <div className="connectFour">

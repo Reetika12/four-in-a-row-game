@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background: var(--unnamed-color-ced2dc) 0% 0% no-repeat padding-box;
+  background: #ced2dc 0% 0% no-repeat padding-box;
 }
 
 .App-logo {
