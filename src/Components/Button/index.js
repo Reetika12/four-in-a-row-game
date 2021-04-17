@@ -6,13 +6,18 @@ function Button(props) {
     let {
        src,
         buttonText,
-        type
+        type,
+        // clickEvent
     } = props;
 
+   const handleEventOnClick = () =>{
+        props.clickEvent()
+    }
     return (
-        <div className={type === "customgame" ? "parentButton" : type === "twoplayers" ? "parentButton2" : type === "gameonline" ? "parentButton3" : type === "startGame" ? "startGameStyle": "parentButton4" }>
-                <img src={src} alt=""/>
-                <div className="customGame">{buttonText}</div>
+        <div onClick={handleEventOnClick} className={type === "customgame" ? "parentButton" : type === "twoplayers" ? "parentButton2" : type === "gameonline" ? "parentButton3" : type === "startGame" ? "startGameStyle" : type === "cancel" ? "cancelstyle" : type ==="OK"? "okStyle":"parentButton4" }>
+                {type!=='cancel' &&<img src={src} alt=""/>}
+                {type!=='cancel' &&<div className="customGame">{buttonText}</div>}
+                {type==='cancel' &&<div className="cancelText">{buttonText}</div>}
         </div>
     );
 }
