@@ -1,49 +1,21 @@
 import React, { Component } from 'react'
 import './Styles/MainPage.css'
 import Button from '../Components/Button'
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { withStyles } from '@material-ui/core';
 import StartGameCard from './StartGameCard'
 import ToastMessage from '../Components/ToastMessage';
 
-const CustomRadio = withStyles({
-    root: {
-        color: '#4B7BFF',
-        '&$checked': {
-            color: '#4B7BFF'
-        }
-    },
-    checked: {}
-})((props) => <Radio color="default" {...props} />);
+
 
 class MainPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dialogOpen: false,
             page: 'main',
-            selectedValue: '',
             openToast: false,
             toastMsg: '',
         }
     }
-    handleDialogOpen = () => {
-        this.setState({ dialogOpen: true });
-    };
 
-    handleClose = () => {
-        this.setState({ dialogOpen: false });
-    };
-
-    handleChangeForGame = (event) => {
-        this.setState({
-            selectedValue: event.target.value,
-        });
-    };
 
     onClickEvent = () => {
         this.setState({
@@ -84,7 +56,7 @@ class MainPage extends Component {
                             </div>
                             <div className="underlinemainCard"></div>
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 10px' }}>
+                                <div className="playerButtons">
                                     <Button
                                         src={require('../Image/one.png').default}
                                         buttonText="Custom Game"
@@ -98,7 +70,7 @@ class MainPage extends Component {
                                         clickEvent={this.nextScreen}
                                     />
                                 </div>
-                                <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 10px' }}>
+                                    <div className="playerButtons">
                                     <Button
                                         src={require('../Image/online.png').default}
                                         buttonText="Game Online"
@@ -118,32 +90,6 @@ class MainPage extends Component {
                     </div>
                 </div>
              </div>}
-                <Dialog
-                    open={this.state.dialogOpen}
-                    onClose={this.handleClose}
-                    aria-labelledby="max-width-dialog-title"
-                >
-                    <div style={{ display: 'flex', flexDirection: 'column', padding: '30px 30px' }}>
-                        <div className="numberOfGame">Number of game</div>
-                        <RadioGroup aria-label="gender" name="gender1" value={this.state.selectedValue} onChange={this.handleChangeForGame}>
-                            <FormControlLabel className="singleBox"  value="games2" control={<CustomRadio />} label="2 Games" />
-                            <FormControlLabel className="singleBox"  value="games3" control={<CustomRadio />} label="3 Games" />
-                            <FormControlLabel className="singleBox"  value="games5" control={<CustomRadio />} label="5 Games" />
-                            <FormControlLabel className="singleBox"  value="games10" control={<CustomRadio />} label="10 Games" />
-                        </RadioGroup>
-                        <div className="underlineStyle"></div>
-                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                            <Button
-                                buttonText="CANCEL"
-                                type="cancel"
-                            />
-                            <Button
-                                buttonText="OK"
-                                type="OK"
-                            />
-                        </div>
-                    </div>
-                </Dialog>
                 <ToastMessage
                     open={openToast}
                     handleClose={this.handleCloseToast}

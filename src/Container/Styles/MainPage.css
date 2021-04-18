@@ -320,6 +320,7 @@
   align-items: center;
   justify-content: center;
   margin-right: 10px;
+  cursor: pointer;
 }
 .cancelText{
   text-align: center;
@@ -342,4 +343,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.playerButtons{
+  display: flex;
+  flex-direction: row;
+  padding: 10px 10px;
+}
+.dialogStyle{
+  display: flex;
+  flex-direction: column;
+  padding: 30px 30px;
+}
+.cancelOkStyle{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

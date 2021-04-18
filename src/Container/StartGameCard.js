@@ -1,6 +1,21 @@
 import React, { Component } from 'react'
 import './Styles/MainPage.css'
 import Button from '../Components/Button'
+import Dialog from '@material-ui/core/Dialog';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { withStyles } from '@material-ui/core';
+
+const CustomRadio = withStyles({
+    root: {
+        color: '#4B7BFF',
+        '&$checked': {
+            color: '#4B7BFF'
+        }
+    },
+    checked: {}
+})((props) => <Radio color="default" {...props} />);
 
 class StartGameCard extends Component {
     constructor(props) {
@@ -33,8 +48,45 @@ class StartGameCard extends Component {
             "playerName": "Alternative turn",
             "headingName": "Who starts"
         }]
+        this.state={
+            dialogOpen: false,
+            startDialog: false,
+            selectedValue: '',
+            page:"startGame"
+        }
     }
 
+    dialogOpenCard = () => {
+        this.setState({
+            dialogOpen: true
+        })
+    }
+
+    handleClose = () => {
+        this.setState({ dialogOpen: false });
+    };
+
+    handleAnotherDialog = () =>{
+        this.setState({
+            startDialog:true
+        })
+    }
+
+    handleChangeForGame = (event) => {
+        this.setState({
+            selectedValue: event.target.value,
+        });
+    };
+    handleCloseStart = () => {
+        this.setState({
+            startDialog: false
+         });
+    }
+    openGamePage = () => {
+        this.setState({
+            page:"gameCard"
+        })
+    }
     renderCarditems = (cardData) => {
         let data = []
         cardData.forEach(d => {
@@ -59,8 +111,66 @@ class StartGameCard extends Component {
                     <Button 
                         buttonText="Start Game"
                         type="startGame"
+                        clickEvent={this.dialogOpenCard}
                     />
                 </div>
+                <Dialog
+                    open={this.state.dialogOpen}
+                    onClose={this.handleClose}
+                    aria-labelledby="max-width-dialog-title"
+                >
+                    <div className="dialogStyle">
+                        <div className="numberOfGame">Number of game</div>
+                        <RadioGroup aria-label="gender" name="gender1" value={this.state.selectedValue} onChange={this.handleChangeForGame}>
+                            <FormControlLabel className="singleBox" value="games2" control={<CustomRadio />} label="2 Games" />
+                            <FormControlLabel className="singleBox" value="games3" control={<CustomRadio />} label="3 Games" />
+                            <FormControlLabel className="singleBox" value="games5" control={<CustomRadio />} label="5 Games" />
+                            <FormControlLabel className="singleBox" value="games10" control={<CustomRadio />} label="10 Games" />
+                        </RadioGroup>
+                        <div className="underlineStyle"></div>
+                        <div className="cancelOkStyle">
+                            <Button
+                                buttonText="CANCEL"
+                                type="cancel"
+                                clickEvent={this.handleClose}
+                            />
+                            <Button
+                                buttonText="OK"
+                                type="OK"
+                                clickEvent={this.handleAnotherDialog}
+                            />
+                        </div>
+                    </div>
+                </Dialog>
+                <Dialog
+                    open={this.state.startDialog}
+                    onClose={this.handleClose}
+                    aria-labelledby="max-width-dialog-title"
+                >
+                    <div className="dialogStyle">
+                        <div className="numberOfGame">Who Starts</div>
+                        <RadioGroup aria-label="gender" name="gender1" value={this.state.selectedValue} onChange={this.handleChangeForGame}>
+                            <FormControlLabel className="singleBox" value="alternativeTurn" control={<CustomRadio />} label="Alternative turn" />
+                            <FormControlLabel className="singleBox" value="LooserFirst" control={<CustomRadio />} label="Looser first" />
+                            <FormControlLabel className="singleBox" value="WinnerFirst" control={<CustomRadio />} label="Winner first" />
+                            <FormControlLabel className="singleBox" value="AlwaysFirst" control={<CustomRadio />} label="Always Player 01" />
+                            <FormControlLabel className="singleBox" value="AlwaysSecond" control={<CustomRadio />} label="Always Player 02" />
+                        </RadioGroup>
+                        <div className="underlineStyle"></div>
+                        <div className="cancelOkStyle">
+                            <Button
+                                buttonText="CANCEL"
+                                type="cancel"
+                                clickEvent={this.handleCloseStart}
+                            />
+                            <Button
+                                buttonText="OK"
+                                type="OK"
+                                clickEvent={this.openGamePage}
+                            />
+                        </div>
+                    </div>
+                </Dialog>
             </div>
         )
     }
