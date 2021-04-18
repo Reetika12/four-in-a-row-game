@@ -7,7 +7,8 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core';
-
+import StartGameCard from './StartGameCard'
+import ToastMessage from '../Components/ToastMessage';
 
 const CustomRadio = withStyles({
     root: {
@@ -25,7 +26,9 @@ class MainPage extends Component {
         this.state = {
             dialogOpen: false,
             page: 'main',
-            selectedValue: ''
+            selectedValue: '',
+            openToast: false,
+            toastMsg: '',
         }
     }
     handleDialogOpen = () => {
@@ -44,14 +47,26 @@ class MainPage extends Component {
 
     onClickEvent = () => {
         this.setState({
-            dialogOpen: true
+            openToast: true,
+            toastMsg: "Coming Soon"
+        })
+    }
+    nextScreen = () =>{
+        this.setState({
+            page:"numplayers"
         })
     }
 
+    handleCloseToast = () => {
+        this.setState({ openToast: false, toastMsg: '' });
+    };
+
     render() {
+        let { page, openToast,toastMsg} = this.state
         return (
             <div className="ParentClass">
-                <div className="boardStyle">
+            {page==='main' &&<div>
+               <div className="boardStyle">
                     <img style={{ height: '100%', width: '100%' }} src={require('../Image/4inarow.png').default} alt="" />
                 </div>
                 <div className="squareBox">
@@ -80,6 +95,7 @@ class MainPage extends Component {
                                         src={require('../Image/two.png').default}
                                         buttonText="Two Players"
                                         type="twoplayers"
+                                        clickEvent={this.nextScreen}
                                     />
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 10px' }}>
@@ -87,11 +103,13 @@ class MainPage extends Component {
                                         src={require('../Image/online.png').default}
                                         buttonText="Game Online"
                                         type="gameonline"
+                                        clickEvent={this.onClickEvent}
                                     />
                                     <Button
                                         src={require('../Image/training.png').default}
                                         buttonText="Training Game"
                                         type="traininggame"
+                                        clickEvent={this.onClickEvent}
                                     />
                                 </div>
                             </div>
@@ -99,6 +117,7 @@ class MainPage extends Component {
                         <div className="footermain">© 2020</div>
                     </div>
                 </div>
+             </div>}
                 <Dialog
                     open={this.state.dialogOpen}
                     onClose={this.handleClose}
@@ -125,7 +144,14 @@ class MainPage extends Component {
                         </div>
                     </div>
                 </Dialog>
+                <ToastMessage
+                    open={openToast}
+                    handleClose={this.handleCloseToast}
+                    message={toastMsg}
+                />
+                {page === 'numplayers' && <StartGameCard/>}
             </div>
+
         )
     }
 }
