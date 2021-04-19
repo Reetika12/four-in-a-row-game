@@ -6,6 +6,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core';
+import ConnectFour from './ConnectFour'
 
 const CustomRadio = withStyles({
     root: {
@@ -84,7 +85,9 @@ class StartGameCard extends Component {
     }
     openGamePage = () => {
         this.setState({
-            page:"gameCard"
+            page: "gameCard",
+            startDialog: false,
+            dialogOpen: false
         })
     }
     renderCarditems = (cardData) => {
@@ -106,14 +109,14 @@ class StartGameCard extends Component {
     render() {
         return (
             <div className="startGameParent" >
-                <div className="startGameCard">
+                {this.state.page ==="startGame" && <div className="startGameCard">
                     {this.renderCarditems(this.json)}
                     <Button 
                         buttonText="Start Game"
                         type="startGame"
                         clickEvent={this.dialogOpenCard}
                     />
-                </div>
+                </div>}
                 <Dialog
                     open={this.state.dialogOpen}
                     onClose={this.handleClose}
@@ -140,7 +143,7 @@ class StartGameCard extends Component {
                                 clickEvent={this.handleAnotherDialog}
                             />
                         </div>
-                    </div>
+                    </div>}
                 </Dialog>
                 <Dialog
                     open={this.state.startDialog}
@@ -171,6 +174,7 @@ class StartGameCard extends Component {
                         </div>
                     </div>
                 </Dialog>
+                {this.state.page === "gameCard" && <ConnectFour/>}
             </div>
         )
     }

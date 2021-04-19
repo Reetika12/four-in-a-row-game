@@ -48,7 +48,7 @@ class MainPage extends Component {
                         </div>
                         <div className="footerStyle">
                             <div className="parentsquare">
-                                <div className="playButtonStyle">
+                                <div className="playButtonStyle" onClick={this.onClickEvent} >
                                     <img src={require('../Image/play-3-32.png').default} alt="" />
                                     <div className="playText">
                                         PLAY

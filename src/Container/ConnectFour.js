@@ -1,28 +1,33 @@
 import React from 'react'
 import './Styles/ConnectFour.css'
 import Button from '../Components/Button'
-
+import MainPage from './MainPage'
 // Row component
-const Row = ({ row, play }) => {
+const Row = ({ row, play, clearimg}) => {
     return (
         <tr>
-            {row.map((cell, i) => <Cell key={i} value={cell} columnIndex={i} play={play} />)}
+            {row.map((cell, i) => <Cell key={i} value={cell} columnIndex={i} play={play} clearimg={clearimg}/>)}
         </tr>
     );
 };
 
-const Cell = ({ value, columnIndex, play }) => {
+const Cell = ({ value, columnIndex, play, clearimg }) => {
     let color = 'white';
+    let img;
     if (value === 1) {
+        img = require('../Image/avatar01.png').default;
         color = 'red';
     } else if (value === 2) {
+        img = require('../Image/avatar02.png').default;
         color = 'yellow';
     }
 
     return (
         <td>
             <div className="cell" onClick={() => { play(columnIndex) }}>
-                <div className={color}></div>
+                <div className={color}>
+                   {clearimg && <img style={{ width: '60px', height: '60px',borderRadius:'50%'}} src={img} alt="" />}
+                </div>
             </div>
         </td>
     );
@@ -37,7 +42,9 @@ class ConnectFour extends React.Component {
             currentPlayer: null,
             board: [],
             gameOver: false,
-            message: ''
+            message: '',
+            clearimg:true,
+            page:'connectfour'
         };
 
         this.json = [{
@@ -54,13 +61,12 @@ class ConnectFour extends React.Component {
             "playerName": "Maria",
             "headingName": "Player 02"
         }]
-        // Bind play function to App component
         this.play = this.play.bind(this);
     }
 
     // Starts new game
     initBoard() {
-        // Create a blank 6x7 matrix
+        // Create a blank 8x8 matrix
         let board = [];
         for (let r = 0; r < 8; r++) {
             let row = [];
@@ -90,7 +96,6 @@ class ConnectFour extends React.Component {
                     break;
                 }
             }
-
             // Check status of board
             let result = this.checkAll(board);
             if (result === this.state.player1) {
@@ -100,7 +105,7 @@ class ConnectFour extends React.Component {
             } else if (result === 'draw') {
                 this.setState({ board, gameOver: true, message: 'Draw game.' });
             } else {
-                this.setState({ board, currentPlayer: this.togglePlayer() });
+                this.setState({ board, currentPlayer: this.togglePlayer(), clearimg:true });
             }
         } else {
             this.setState({ message: 'Game over. Please start a new game.' });
@@ -152,6 +157,9 @@ class ConnectFour extends React.Component {
         }
     }
     onClickEvent = () => {
+        this.setState({
+            clearimg:false
+        })
         this.initBoard();
     }
 
@@ -204,17 +212,23 @@ class ConnectFour extends React.Component {
         })
         return data;
     }
+    nextScreen = () =>{
+        this.setState({
+            page:"mainpage"
+        })
+    }
 
     render() {
+        let { clearimg } = this.state
         return (
             <React.Fragment>
               <div className="parentDiv">
-                <div className="commonStyle">
+                {this.state.page ==="connectfour" && <div className="commonStyle">
                 <table>
                     <thead>
                     </thead>
                     <tbody>
-                        {this.state.board.map((row, i) => (<Row key={i} row={row} play={this.play} />))}
+                        {this.state.board.map((row, i) => (<Row key={i} row={row} play={this.play} clearimg={clearimg}/>))}
                     </tbody>
                 </table>
                 <div className="gameSide">
@@ -234,9 +248,8 @@ class ConnectFour extends React.Component {
                         clickEvent={this.nextScreen}
                     />
                 </div>
-
-                {/* <p className="message">{this.state.message}</p> */}
-            </div>
+            </div>}
+                {this.state.page ==="mainpage" && <MainPage/>}
             </div>
         </React.Fragment>
         );
@@ -244,5 +257,3 @@ class ConnectFour extends React.Component {
 }
 
 export default ConnectFour;
-
-// ReactDOM.render(<App />, document.getElementById('main'));
