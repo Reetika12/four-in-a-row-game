@@ -7,6 +7,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core';
 import ConnectFour from './ConnectFour'
+import ToastMessage from '../Components/ToastMessage';
 
 const CustomRadio = withStyles({
     root: {
@@ -53,7 +54,10 @@ class StartGameCard extends Component {
             dialogOpen: false,
             startDialog: false,
             selectedValue: '',
-            page:"startGame"
+            page:"startGame",
+            openToast: false,
+            toastMsg: '',
+            selectedValue2:''
         }
     }
 
@@ -67,10 +71,24 @@ class StartGameCard extends Component {
         this.setState({ dialogOpen: false });
     };
 
+    handleCloseToast = () => {
+        this.setState({ openToast: false, toastMsg: '' });
+    };
+
     handleAnotherDialog = () =>{
-        this.setState({
-            startDialog:true
-        })
+        let {selectedValue} = this.state
+        if (!selectedValue)
+        {
+            this.setState({
+                openToast: true,
+                toastMsg: "please select one of the option"
+            })
+        }
+        else{
+            this.setState({
+                startDialog: true
+            })
+        }
     }
 
     handleChangeForGame = (event) => {
@@ -84,11 +102,21 @@ class StartGameCard extends Component {
          });
     }
     openGamePage = () => {
-        this.setState({
-            page: "gameCard",
-            startDialog: false,
-            dialogOpen: false
-        })
+        let { selectedValue2 } = this.state
+
+        if (!selectedValue2) {
+            this.setState({
+                openToast: true,
+                toastMsg: "please select one of the option"
+            })
+        }
+        else{
+            this.setState({
+                page: "gameCard",
+                startDialog: false,
+                dialogOpen: false
+            })
+        }
     }
     renderCarditems = (cardData) => {
         let data = []
@@ -105,8 +133,14 @@ class StartGameCard extends Component {
         })
         return data;
     }
+    handleChangeForGameNo = (event) =>{
+        this.setState({
+            selectedValue2: event.target.value,
+        });
+    }
 
     render() {
+        let { openToast,toastMsg} = this.state
         return (
             <div className="startGameParent" >
                 {this.state.page ==="startGame" && <div className="startGameCard">
@@ -124,7 +158,7 @@ class StartGameCard extends Component {
                 >
                     <div className="dialogStyle">
                         <div className="numberOfGame">Number of game</div>
-                        <RadioGroup aria-label="gender" name="gender1" value={this.state.selectedValue} onChange={this.handleChangeForGame}>
+                        <RadioGroup aria-label="control1" name="control1" value={this.state.selectedValue} onChange={this.handleChangeForGame}>
                             <FormControlLabel className="singleBox" value="games2" control={<CustomRadio />} label="2 Games" />
                             <FormControlLabel className="singleBox" value="games3" control={<CustomRadio />} label="3 Games" />
                             <FormControlLabel className="singleBox" value="games5" control={<CustomRadio />} label="5 Games" />
@@ -143,7 +177,7 @@ class StartGameCard extends Component {
                                 clickEvent={this.handleAnotherDialog}
                             />
                         </div>
-                    </div>}
+                    </div>
                 </Dialog>
                 <Dialog
                     open={this.state.startDialog}
@@ -152,7 +186,7 @@ class StartGameCard extends Component {
                 >
                     <div className="dialogStyle">
                         <div className="numberOfGame">Who Starts</div>
-                        <RadioGroup aria-label="gender" name="gender1" value={this.state.selectedValue} onChange={this.handleChangeForGame}>
+                        <RadioGroup aria-label="control2" name="control2" value={this.state.selectedValue2} onChange={this.handleChangeForGameNo}>
                             <FormControlLabel className="singleBox" value="alternativeTurn" control={<CustomRadio />} label="Alternative turn" />
                             <FormControlLabel className="singleBox" value="LooserFirst" control={<CustomRadio />} label="Looser first" />
                             <FormControlLabel className="singleBox" value="WinnerFirst" control={<CustomRadio />} label="Winner first" />
@@ -174,6 +208,11 @@ class StartGameCard extends Component {
                         </div>
                     </div>
                 </Dialog>
+                <ToastMessage
+                    open={openToast}
+                    handleClose={this.handleCloseToast}
+                    message={toastMsg}
+                />
                 {this.state.page === "gameCard" && <ConnectFour/>}
             </div>
         )

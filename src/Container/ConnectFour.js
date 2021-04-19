@@ -44,7 +44,8 @@ class ConnectFour extends React.Component {
             gameOver: false,
             message: '',
             clearimg:true,
-            page:'connectfour'
+            page:'connectfour',
+            enableCelebration:false
         };
 
         this.json = [{
@@ -99,16 +100,16 @@ class ConnectFour extends React.Component {
             // Check status of board
             let result = this.checkAll(board);
             if (result === this.state.player1) {
-                this.setState({ board, gameOver: true, message: 'David you won game!' });
+                this.setState({ board, gameOver: true, message: 'David you won game!', enableCelebration: true});
             } else if (result === this.state.player2) {
-                this.setState({ board, gameOver: true, message: 'Maria you won game!' });
+                this.setState({ board, gameOver: true, message: 'Maria you won game!', enableCelebration: true });
             } else if (result === 'draw') {
                 this.setState({ board, gameOver: true, message: 'Draw game.' });
             } else {
                 this.setState({ board, currentPlayer: this.togglePlayer(), clearimg:true });
             }
         } else {
-            this.setState({ message: 'Game over. Please start a new game.' });
+            this.setState({ message: 'Game over. Please start a new game.', enableCelebration: false });
         }
     }
 
@@ -158,7 +159,8 @@ class ConnectFour extends React.Component {
     }
     onClickEvent = () => {
         this.setState({
-            clearimg:false
+            clearimg:false,
+            enableCelebration:false
         })
         this.initBoard();
     }
@@ -219,7 +221,7 @@ class ConnectFour extends React.Component {
     }
 
     render() {
-        let { clearimg } = this.state
+        let { clearimg, enableCelebration} = this.state
         return (
             <React.Fragment>
               <div className="parentDiv">
@@ -233,7 +235,7 @@ class ConnectFour extends React.Component {
                 </table>
                 <div className="gameSide">
                     <div className="fiveGameTournament">5 Games Tournament</div>
-                    <div className="congratulation">Congratulation!</div>
+                    {enableCelebration && <div className="congratulation">Congratulation!</div>}
                     <div className="winner">{this.state.message}</div>
                     {this.renderCarditems(this.json)}
                     <div className="underlineStyle"></div>
