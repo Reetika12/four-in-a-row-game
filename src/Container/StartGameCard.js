@@ -21,14 +21,14 @@ class StartGameCard extends Component {
     constructor(props) {
         super(props);
         this.json = [{
-            "image": require('../Image/man.svg').default,
+            "image": require('../Image/avatar01.png').default,
             "color": '#37AC5D',
             "secondaryColor": "#DCF6E4",
             "playerName": "David",
             "headingName": "Player 01"
         },
         {
-            "image": require('../Image/woman.svg').default,
+            "image": require('../Image/avatar02.png').default,
             "color": "#F8D146",
             "secondaryColor": "#F6EFD5",
             "playerName": "Maria",
