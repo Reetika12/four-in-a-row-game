@@ -158,11 +158,11 @@ class StartGameCard extends Component {
                 >
                     <div className="dialogStyle">
                         <div className="numberOfGame">Number of game</div>
-                        <RadioGroup aria-label="control1" name="control1" value={this.state.selectedValue} onChange={this.handleChangeForGame}>
-                            <FormControlLabel className="singleBox" value="games2" control={<CustomRadio />} label="2 Games" />
-                            <FormControlLabel className="singleBox" value="games3" control={<CustomRadio />} label="3 Games" />
-                            <FormControlLabel className="singleBox" value="games5" control={<CustomRadio />} label="5 Games" />
-                            <FormControlLabel className="singleBox" value="games10" control={<CustomRadio />} label="10 Games" />
+                        <RadioGroup aria-label="control" name="control1" value={this.state.selectedValue} onChange={this.handleChangeForGame}>
+                            <FormControlLabel style={{marginLeft:'0px'}} className="singleBox" value="games2" control={<CustomRadio />} label="2 Games" />
+                            <FormControlLabel style={{ marginLeft: '0px'}} className="singleBox" value="games3" control={<CustomRadio />} label="3 Games" />
+                            <FormControlLabel style={{ marginLeft: '0px' }} className="singleBox" value="games5" control={<CustomRadio />} label="5 Games" />
+                            <FormControlLabel style={{ marginLeft: '0px' }} className="singleBox" value="games10" control={<CustomRadio />} label="10 Games" />
                         </RadioGroup>
                         <div className="underlineStyle"></div>
                         <div className="cancelOkStyle">
@@ -186,12 +186,12 @@ class StartGameCard extends Component {
                 >
                     <div className="dialogStyle">
                         <div className="numberOfGame">Who Starts</div>
-                        <RadioGroup aria-label="control2" name="control2" value={this.state.selectedValue2} onChange={this.handleChangeForGameNo}>
-                            <FormControlLabel className="singleBox" value="alternativeTurn" control={<CustomRadio />} label="Alternative turn" />
-                            <FormControlLabel className="singleBox" value="LooserFirst" control={<CustomRadio />} label="Looser first" />
-                            <FormControlLabel className="singleBox" value="WinnerFirst" control={<CustomRadio />} label="Winner first" />
-                            <FormControlLabel className="singleBox" value="AlwaysFirst" control={<CustomRadio />} label="Always Player 01" />
-                            <FormControlLabel className="singleBox" value="AlwaysSecond" control={<CustomRadio />} label="Always Player 02" />
+                        <RadioGroup aria-label="control" name="control2" value={this.state.selectedValue2} onChange={this.handleChangeForGameNo}>
+                            <FormControlLabel style={{ marginLeft: '0px' }} className="singleBox" value="alternativeTurn" control={<CustomRadio />} label="Alternative turn" />
+                            <FormControlLabel style={{ marginLeft: '0px' }} className="singleBox" value="LooserFirst" control={<CustomRadio />} label="Looser first" />
+                            <FormControlLabel style={{ marginLeft: '0px' }} className="singleBox" value="WinnerFirst" control={<CustomRadio />} label="Winner first" />
+                            <FormControlLabel style={{ marginLeft: '0px' }} className="singleBox" value="AlwaysFirst" control={<CustomRadio />} label="Always Player 01" />
+                            <FormControlLabel style={{ marginLeft: '0px' }} className="singleBox" value="AlwaysSecond" control={<CustomRadio />} label="Always Player 02" />
                         </RadioGroup>
                         <div className="underlineStyle"></div>
                         <div className="cancelOkStyle">

@@ -2,8 +2,8 @@
   text-align: center;
   background: var(--unnamed-color-ced2dc) 0% 0% no-repeat padding-box;
   background: #ced2dc 0% 0% no-repeat padding-box;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 .App-logo {
