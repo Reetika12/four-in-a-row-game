@@ -2,6 +2,8 @@ import React from 'react'
 import './Styles/ConnectFour.css'
 import Button from '../Components/Button'
 import MainPage from './MainPage'
+import { Grid } from '@material-ui/core';
+
 // Row component
 const Row = ({ row, play, clearimg}) => {
     return (
@@ -26,7 +28,7 @@ const Cell = ({ value, columnIndex, play, clearimg }) => {
         <td>
             <div className="cell" onClick={() => { play(columnIndex) }}>
                 <div className={color}>
-                   {clearimg && <img style={{ width: '60px', height: '60px',borderRadius:'50%'}} src={img} alt="" />}
+                   {clearimg && <img style={{ width: '100%', height: '100%',borderRadius:'50%'}} src={img} alt="" />}
                 </div>
             </div>
         </td>
@@ -203,8 +205,8 @@ class ConnectFour extends React.Component {
         let data = []
         cardData.forEach(d => {
             data.push(<div className="cardBlock" style={{ background: `${d.secondaryColor}` }}>
-                <div className="circleClass" style={{ border: `20px solid ${d.color}` }}>
-                    <img style={{ width: '56px' }} src={d.image} alt="" />
+                <div className="circleClass" style={{ border: `15px solid ${d.color}` }}>
+                    <img style={{ width: '30px',height:'30px' }} src={d.image} alt="" />
                 </div>
                 <div className="nameEmailStyle">
                     <div className="nameStyle">{d.headingName}</div>
@@ -226,6 +228,8 @@ class ConnectFour extends React.Component {
             <React.Fragment>
               <div className="parentDiv">
                 {this.state.page ==="connectfour" && <div className="commonStyle">
+            <Grid container xs={12} sm={12} md={12} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center',justifyContent: 'center'}}>
+            <Grid item xs={12} sm={8} md={8} >
                 <table>
                     <thead>
                     </thead>
@@ -233,6 +237,8 @@ class ConnectFour extends React.Component {
                         {this.state.board.map((row, i) => (<Row key={i} row={row} play={this.play} clearimg={clearimg}/>))}
                     </tbody>
                 </table>
+             </Grid>
+            <Grid item xs={12} sm={4} md={4} >
                 <div className="gameSide">
                     <div className="fiveGameTournament">5 Games Tournament</div>
                     {enableCelebration && <div className="congratulation">Congratulation!</div>}
@@ -250,8 +256,10 @@ class ConnectFour extends React.Component {
                         clickEvent={this.nextScreen}
                     />
                 </div>
+            </Grid>
+            </Grid>
             </div>}
-                {this.state.page ==="mainpage" && <MainPage/>}
+            {this.state.page ==="mainpage" && <MainPage/>}
             </div>
         </React.Fragment>
         );

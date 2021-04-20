@@ -36,8 +36,8 @@ table {
 }
 
 .cell {
-  height: 70px;
-  width: 70px;
+  height: 40px;
+  width: 40px;
   background-color: #1990ff;
   display: flex;
   flex-direction: row;
@@ -73,25 +73,25 @@ table {
 }
 
 .white {
-  height: 60px;
-  width: 60px;
+  height: 100%;
+  width: 100%;
   background-color: #FFF;
-  border-radius: 100px;
+  border-radius: 50%;
 }
 
 .red {
-  height: 60px;
-  width: 60px;
+  height: 100%;
+  width: 100%;
   background-color: red;
-  border-radius: 100px;
+  border-radius: 50%;
   transition: background-color 0.5s;
 }
 
 .yellow {
-  height: 60px;
-  width: 60px;
+  height: 100%;
+  width: 100%;
   background-color: yellow;
-  border-radius: 100px;
+  border-radius: 50%;
   transition: background-color 0.5s;
 }
 .tournaMentText{
@@ -125,6 +125,7 @@ table {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding:15px;
 }
 .gameSide{
   display: flex;
@@ -149,6 +150,7 @@ table {
     border-radius: 30px;
     opacity: 1;
     border-radius: 30px;
+    margin-top: 20px;
 }
 .fiveGameTournament{
     font-size: 25px;
@@ -186,18 +188,15 @@ table {
     padding: 16px;
     align-items: center;
     margin-bottom: 16px;
-    height: 100px;
 }
 .circleClass{
     background: #ffffff 0% 0% no-repeat padding-box;
     opacity: 1;
-    width: 90px;
-    height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 20px solid #37AC5D;
-    border-radius: 100px;
+    border-radius: 50%;
 }
 .nameEmailStyle{
     display: flex;
@@ -206,13 +205,11 @@ table {
 }
 .nameStyle{
     text-align: left;
-    font: normal normal normal 18px/27px Poppins;
     letter-spacing: 0px;
     color: #424242;
     opacity: 0.56;
 }
 .headingStyle{
-    font: normal normal normal 28px/42px Poppins;
     letter-spacing: 0px;
     color: #424242;
     opacity: 1;

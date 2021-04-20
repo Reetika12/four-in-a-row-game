@@ -14,41 +14,32 @@
   width: 100%;
 }
 .ParentClass {
-  /* top: 0px;
-  left: 0px; */
   background: var(--unnamed-color-ced2dc) 0% 0% no-repeat padding-box;
   background: #ced2dc 0% 0% no-repeat padding-box;
   opacity: 1;
-  /* padding: 30px; */
   overflow: hidden;
   overflow-x: hidden;
   overflow-y: hidden;
-  /* height:90vh; */
 
 }
 .connectFour {
   width: 50%;
+
+}
+.connectFourWith{
+  width: 50%;
   align-self: start;
-  /* width: inherit; */
-  /* margin-left: 200px; */
-  /* padding-right: 420px; */
 }
 .connectFourText {
-  /* top: 124px;
-  left: 610px;
-  height: 39px; */
+ 
   text-align: left;
-  font: normal normal 600 28px/42px Poppins;
+  font: normal normal 600 22px/32px Poppins;
   letter-spacing: 0px;
   color: #3d4276;
   text-transform: uppercase;
   opacity: 1;
 }
 .connectFourBelowText {
-  /* top: 168px;
-  left: 610px;
-  width: 202px;
-  height: 52px; */
   text-align: left;
   font: normal normal normal 18px/27px Poppins;
   letter-spacing: 0px;
@@ -56,8 +47,7 @@
   opacity: 1;
 }
 .playButtonStyle {
-  /* left: 676px; */
-  /* width: 132px; */
+
   height: 100px;
   background: #ff7243 0% 0% no-repeat padding-box;
   box-shadow: 10px 10px 50px #ff724373;
@@ -148,8 +138,6 @@
   color:#ffffff;
 }
 .parentButton2 {
-  /* width: 250px;
-  height: 70px; */
   background: #4b7bff 0% 0% no-repeat padding-box;
   border-radius: 20px;
   opacity: 1;
@@ -163,8 +151,6 @@
   cursor: pointer;
 }
 .parentButton3 {
-  /* width: 250px;
-  height: 70px; */
   background: #4b4bff 0% 0% no-repeat padding-box;
   border-radius: 20px;
   opacity: 1;
@@ -178,8 +164,6 @@
   cursor: pointer;
 }
 .parentButton4 {
-  /* width: 250px;
-  height: 70px; */
   background: #6e4bff 0% 0% no-repeat padding-box;
   border-radius: 20px;
   opacity: 1;
@@ -193,9 +177,7 @@
   cursor: pointer;
 }
 .customGame {
-  width:60%;
-  /* height:50vh; */
-  /* width: 150px; */
+
   color: var(--unnamed-color-ffffff);
   text-align: center;
   letter-spacing: 0px;
@@ -207,7 +189,6 @@
 .startGameCard {
       display: flex;
       flex-direction: column;
-      /* width: 50%; */
       align-items: center;
       background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
       background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -222,12 +203,7 @@
     justify-content: center;
     height:'500px';
     overflow: hidden;
-    /* overflow-y: hidden; */
 
-    /* padding: 20px; */
-    /* height: 100vh; */
-    /* overflow: hidden; */
-    /* overflow-x: hidden;*/
 }
 .cardBlock{
     border: 1px solid #70707026;
@@ -242,8 +218,6 @@
 .circleClass{
     background: #ffffff 0% 0% no-repeat padding-box;
     opacity: 1;
-    width: 90px;
-    height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -257,13 +231,11 @@
 }
 .nameStyle{
     text-align: left;
-    font: normal normal normal 18px/27px Poppins;
     letter-spacing: 0px;
     color: #424242;
     opacity: 0.56;
 }
 .headingStyle{
-    font: normal normal normal 28px/42px Poppins;
     letter-spacing: 0px;
     color: #424242;
     opacity: 1;
@@ -277,8 +249,6 @@
     border: 1px solid #70707026;
     border-radius: 20px;
     opacity: 1;
-    /* width: 570px;
-    height: 100px; */
     font-size: 32px;
     cursor: pointer;
     color:#ffffff;
@@ -291,13 +261,11 @@
   border-radius: 15px;
   opacity: 1;
   width:100%;
-  /* width: 400px; */
   height: 50px;
   display: flex;
   align-items: center;
-  /* margin-left: 0px; */
   margin:  5px 0px; 
-  
+
 }
 .numberOfGame{
   text-align: center;

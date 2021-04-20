@@ -42,9 +42,11 @@ class MainPage extends Component {
                         <img style={{ height: '100%', width: '100%' }} src={require('../Image/4inarow.png').default} alt="" />
                     </div>
                     <div className="squareBox">
-                        <div className="connectFour">
+                        <div className={window.innerWidth < 750 ? "connectFourWith" : "connectFour"}>
                             <div className="connectFourText">Connect Four!</div>
-                            <div className="connectFourBelowText">Play with other players around the world.</div>
+                            <div className="connectFourBelowText">Play with other players 
+                            <br/>
+                            around the world.</div>
                         </div>
                         <div className="footerStyle">
                             <div className="parentsquare">
